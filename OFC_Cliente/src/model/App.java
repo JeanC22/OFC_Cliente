@@ -5,14 +5,15 @@
  */
 package model;
 
-import controllers.LogedWindowController;
 import java.io.IOException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
+import model.controllers.SingInWindowController;
 
 /**
  *
@@ -23,23 +24,23 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        
         try {
 
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("view/LogedWindow.fxml"));
-            System.out.println("aka");
-            Parent root = (Parent)loader.load();
-            //Conceguir el controlador grafico y setear la referencia para la stage
+            /*            Parent root = FXMLLoader.load(
+                    getClass().getResource("views/SignInWindow.fxml"));
+            Scene scene = new Scene(root);
             
-            LogedWindowController MainStagecontroller =
-                    ((LogedWindowController)loader.getController());
-            //Set la referencia al stage
-            MainStagecontroller.setStage(primaryStage);
+            primaryStage.setScene(scene);
+            primaryStage.show();*/
+            URL a = getClass().getResource("views/SignInWindow.fxml");
+            System.out.println(a);
+            FXMLLoader loader = new FXMLLoader(a);
+            Parent root = (Parent) loader.load();
+            SingInWindowController mainStageController
+                    = ((SingInWindowController) loader.getController());
+            mainStageController.setStage(primaryStage);
+            mainStageController.initStage(root);
             //inicializar la scena
-           MainStagecontroller.initStage(root);
-           
-                
         } catch (IOException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
