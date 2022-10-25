@@ -13,14 +13,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-
-<Pane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SingInWindowController">
+<Pane prefHeight="600.0" prefWidth="800.0"  xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SingInWindowController">
    <children>
       <AnchorPane layoutX="269.0" prefHeight="600.0" prefWidth="543.0" style="-fx-background-color: #0f0f0f;">
          <children>
             <ImageView fx:id="imageView" fitHeight="136.0" fitWidth="340.0" layoutX="102.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../sources/OFCLogo.png" />
+                  <Image url="@sources/OFCLogo.png" />
                </image></ImageView>
          </children>
       </AnchorPane>
@@ -52,11 +51,11 @@
             </Label>
             <ImageView fx:id="passwrdTT" fitHeight="26.0" fitWidth="26.0" layoutX="209.0" layoutY="291.0">
                <image>
-                  <Image url="@../sources/questionIconBlack.png" />
+                  <Image url="@sources/questionIconBlack.png" />
                </image></ImageView>
             <ImageView fx:id="usernameTT" fitHeight="26.0" fitWidth="26.0" layoutX="209.0" layoutY="182.0">
                <image>
-                  <Image url="@../sources/questionIconBlack.png" />
+                  <Image url="@sources/questionIconBlack.png" />
                </image></ImageView>
             <Hyperlink fx:id="signUpLink" layoutX="45.0" layoutY="350.0" style="-fx-font-size: 1.3em; -fx-text-fill: #000;" text="Sing Up" />
             <PasswordField layoutX="46.0" layoutY="292.0" promptText="min 6 max 12 characters" style="-fx-background-color: none; -fx-border-color: #000; -fx-border-style: hidden hidden solid hidden; -fx-text-fill: #000;" />

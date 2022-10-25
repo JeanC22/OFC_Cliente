@@ -5,13 +5,13 @@
  */
 package model;
 
+import controllers.LogedWindowController;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
@@ -25,12 +25,20 @@ public class App extends Application {
 
         
         try {
-           Parent root = FXMLLoader.load(getClass().getResource("singInWindow.fxml"));
-            Scene scene = new Scene(root);
 
-            primaryStage.setTitle("Hello World!");
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("view/LogedWindow.fxml"));
+            System.out.println("aka");
+            Parent root = (Parent)loader.load();
+            //Conceguir el controlador grafico y setear la referencia para la stage
+            
+            LogedWindowController MainStagecontroller =
+                    ((LogedWindowController)loader.getController());
+            //Set la referencia al stage
+            MainStagecontroller.setStage(primaryStage);
+            //inicializar la scena
+           MainStagecontroller.initStage(root);
+           
                 
         } catch (IOException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
