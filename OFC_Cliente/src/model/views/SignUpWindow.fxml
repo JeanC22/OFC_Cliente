@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="model.controllers.SingUpWindowController">
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #000;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="model.controllers.SingUpWindowController">
    <children>
       <AnchorPane disable="true" layoutX="242.0" layoutY="214.0" opacity="0.59" prefHeight="200.0" prefWidth="200.0" style="-fx-filter-blur: 10px;">
          <children>
@@ -33,7 +33,7 @@
       <Label layoutX="194.0" layoutY="319.0" text="Full name" textFill="WHITE" />
       <Label layoutX="464.0" layoutY="168.0" text="Password" textFill="WHITE" />
       <Label layoutX="466.0" layoutY="319.0" text="E-mail" textFill="WHITE" />
-      <Button fx:id="signUpBtn" defaultButton="true" layoutX="339.0" layoutY="460.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="122.0" style="-fx-background-color: #FFE98F; -fx-background-radius: 50em; -fx-font-size: 1.7em;" text="SIGN UP">
+      <Button fx:id="signUpBtn" defaultButton="true" layoutX="339.0" layoutY="460.0" mnemonicParsing="false" onAction="#signUp" prefHeight="49.0" prefWidth="122.0" style="-fx-background-color: #FFE98F; -fx-background-radius: 50em; -fx-font-size: 1.7em;" text="SIGN UP">
          <font>
             <Font size="16.0" />
          </font>
