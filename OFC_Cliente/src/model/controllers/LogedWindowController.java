@@ -5,23 +5,27 @@
  */
 package model.controllers;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
  *
- * @author 2dam
+ * @author Jp
  */
-public class LogedWindowController implements Initializable {
+public class LogedWindowController {
+
     private Stage stage;
     @FXML
     private Label profileLabel;
@@ -34,17 +38,9 @@ public class LogedWindowController implements Initializable {
     @FXML
     private ImageView logoutImage;
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-
     public void setStage(Stage stage) {
-        
-          this.stage=stage;
+
+        this.stage = stage;
     }
 
     public void initStage(Parent root) {
@@ -54,4 +50,51 @@ public class LogedWindowController implements Initializable {
         stage.show();
     }
 
+    /**
+     * FXML Controller class
+     * @author Jp 
+     * this method will be close this view and open the SingInWindow
+     */
+    @FXML
+    public void logout() {
+        //We will confir if the user rly want to logout 
+        Integer reply = JOptionPane.showConfirmDialog(null,
+                "Confirmar para salir", "confirmar",
+                JOptionPane.YES_NO_OPTION);
+        if (reply == JOptionPane.YES_OPTION) {
+            try {
+                //Gonna initialition a new Stage
+                Stage mainStage = new Stage();
+                // we gonna create a URL for get the fxml view
+                URL viewLink = getClass().getResource(
+                        "/model/views/SignInWindow.fxml");
+                // initialition loader
+                FXMLLoader loader = new FXMLLoader(viewLink);
+                //make the root with the loader
+                Parent root = (Parent) loader.load();
+                //Get the controller
+                SingInWindowController mainStageController
+                        = ((SingInWindowController) loader.getController());
+                //set the stage
+                mainStageController.setStage(mainStage);
+                //start the stage
+                mainStageController.initStage(root);
+                try {
+                    //close the actually View
+                    this.stage.close();
+                } catch (Exception e) {
+
+                }
+
+            } catch (IOException ex) {
+
+                Logger.getLogger(LogedWindowController.class.getName())
+                        .log(Level.SEVERE, null, ex);
+
+            }
+        }
+
+    }
+    
+    
 }

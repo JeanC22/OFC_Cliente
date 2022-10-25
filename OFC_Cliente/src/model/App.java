@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 import model.controllers.SingInWindowController;
 
 /**
- *
+ *  
  * @author 2dam
  */
 public class App extends Application {
@@ -25,22 +25,25 @@ public class App extends Application {
     public void start(Stage primaryStage) {
 
         try {
-
-            /*            Parent root = FXMLLoader.load(
-                    getClass().getResource("views/SignInWindow.fxml"));
-            Scene scene = new Scene(root);
-            
-            primaryStage.setScene(scene);
-            primaryStage.show();*/
-            URL a = getClass().getResource("views/SignInWindow.fxml");
-            System.out.println(a);
-            FXMLLoader loader = new FXMLLoader(a);
+           
+            URL viewLink = getClass().getResource("views/SignInWindow.fxml");
+            FXMLLoader loader = new FXMLLoader(viewLink);
             Parent root = (Parent) loader.load();
             SingInWindowController mainStageController
                     = ((SingInWindowController) loader.getController());
             mainStageController.setStage(primaryStage);
             mainStageController.initStage(root);
-            //inicializar la scena
+            
+             /*
+             Stage loginStage = new Stage();
+             URL viewLink = getClass().getResource("views/LogedWindow.fxml");
+
+            FXMLLoader loader = new FXMLLoader(viewLink);
+            Parent root = (Parent) loader.load();
+            LogedWindowController logedStageController
+                    = ((LogedWindowController) loader.getController());
+            logedStageController.setStage(loginStage);
+            logedStageController.initStage(root);*/
         } catch (IOException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
