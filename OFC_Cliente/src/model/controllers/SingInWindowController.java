@@ -27,14 +27,14 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
  *
  * @author jp22
  */
-public class SingInWindowController implements Initializable{
-    
+public class SingInWindowController{
     private Stage stage;
     @FXML
     private ImageView imageView;
@@ -42,7 +42,7 @@ public class SingInWindowController implements Initializable{
     private Button singInBtn;
     @FXML
     private TextField userNameTxTF;
-     @FXML
+    @FXML
     private PasswordField passwdTxTF;
     @FXML
     private ImageView passwrdTT;
@@ -51,10 +51,10 @@ public class SingInWindowController implements Initializable{
     @FXML
     private Hyperlink signUpLink;
     
- public void setStage(Stage stage) {
+    public void setStage(Stage stage) {
         this.stage = stage;
     }
- 
+    
     public void initStage(Parent root) {
         //Create a scene associated to the node graph root.
         Scene scene = new Scene(root);
@@ -65,15 +65,10 @@ public class SingInWindowController implements Initializable{
         stage.setTitle("OFC SING IN");
         stage.setResizable(false);
         stage.setOnShowing(this::windowShowing);
-        userNameTxTF.textProperty().addListener((observable) -> this.fieldsLength((ObservableValue) observable));
-        passwdTxTF.textProperty().addListener((observable) -> this.fieldsLength((ObservableValue) observable));
+        userNameTxTF.textProperty().addListener((observable) -> this.userNameLength((ObservableValue) observable));
+        passwdTxTF.textProperty().addListener((observable) -> this.passwordLength((ObservableValue) observable));
         //Show window
-        stage.show();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
+        this.stage.show();
     }
     
       private void windowShowing(WindowEvent event){
@@ -83,40 +78,68 @@ public class SingInWindowController implements Initializable{
         passwdTxTF.setTooltip(new Tooltip("min 6 max 12 characters"));
         signUpLink.setTooltip(new Tooltip("Click para abrir la ventana de registro"));
       }
-    @FXML
-    private void signUpWindow(ActionEvent event) {
+      @FXML
+    private void singUpWindow(javafx.event.ActionEvent event) {
         try {
             //Crea una escena a partir del Parent
-            Parent root = FXMLLoader.load(getClass().getResource("views/SignUpWindow.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/model/views/SignUpWindow.fxml"));
             //Establece la escena del escenario(Stage) y la muestra
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setTitle("OFC SIGN UP");
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(SingInWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    private void userNameLength(ObservableValue observable) {
+        if (userNameTxTF.getText().length() > 15) {
+            new Alert(AlertType.ERROR, "La longitud del campo usuario supera los 15 caracteres").showAndWait();
+        }
+
+    }
     
+    private void passwordLength(ObservableValue observable) {
+        if (passwdTxTF.getText().length() < 6 || passwdTxTF.getText().length() > 12) {
+            new Alert(AlertType.ERROR, "La longitud del campo contraseña es minimo de 6 o mayor que 12 caracteres").showAndWait();
+        }
+
+    }
+
     @FXML
-    private void signIn(ActionEvent event) {
-            if (userNameTxTF.getText().isEmpty() || passwdTxTF.getText().isEmpty()) {
-                new Alert(AlertType.ERROR, "Todos los campos no estan informados").showAndWait();
-                
-            }else{
-                userNameTxTF.textProperty().addListener((observable) -> this.fieldsLength((ObservableValue) observable));
-                passwdTxTF.textProperty().addListener((observable) -> this.fieldsLength((ObservableValue) observable));
+    private void signIn(javafx.event.ActionEvent event) {
+        if (userNameTxTF.getText().isEmpty() || passwdTxTF.getText().isEmpty()) {
+            new Alert(AlertType.ERROR, "Todos los campos no estan informados").showAndWait();
+
+        } else {
+                try {
+                    Stage loginStage = new Stage();
+                    
+                    URL viewLink = getClass().getResource("/model/views/LogedWindow.fxml");
+                    
+                    FXMLLoader loader = new FXMLLoader(viewLink);
+                    Parent root = (Parent) loader.load();
+                    LogedWindowController logedStageController
+                            = ((LogedWindowController) loader.getController());
+                    logedStageController.setStage(loginStage);
+                    logedStageController.initStage(root);
+                    try {
+                        //close the actually View
+                        this.stage.close();
+                    } catch (Exception e) {
+
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(LogedWindowController.class.getName())
+                            .log(Level.SEVERE, null, ex);
+                }
+
             }
-        
-    }
 
-    private void fieldsLength(ObservableValue observable){
-            if (userNameTxTF.getText().length() > 15) {
-               new Alert(AlertType.ERROR, "La longitud del campo usuario supera los 15 caracteres").showAndWait();
-            }else if(passwdTxTF.getText().length() < 6 || passwdTxTF.getText().length() > 12){
-                new Alert(AlertType.ERROR, "La longitud del campo contraseña es minimo de 6 o mayor que 12").showAndWait();
-            }  
-        
+        }
     }
 
 
-}
+
+

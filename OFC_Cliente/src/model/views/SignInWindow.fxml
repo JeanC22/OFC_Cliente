@@ -26,7 +26,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="600.0" prefWidth="272.0" style="-fx-background-color: #FFE98F;">
          <children>
-            <Button fx:id="singInBtn" layoutX="74.0" layoutY="435.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="122.0" style="-fx-background-color: #000; -fx-font-size: 1.7em; -fx-text-fill: #FFE98F #FFE98F; -fx-background-radius: 50em;" text="SING IN">
+            <Button fx:id="singInBtn" layoutX="74.0" layoutY="435.0" mnemonicParsing="false" onAction="#signIn" prefHeight="49.0" prefWidth="122.0" style="-fx-background-color: #000; -fx-font-size: 1.7em; -fx-text-fill: #FFE98F #FFE98F; -fx-background-radius: 50em;" text="SING IN">
                <font>
                   <Font size="16.0" />
                </font>
@@ -58,8 +58,8 @@
                <image>
                   <Image url="@../sources/questionIconBlack.png" />
                </image></ImageView>
-            <Hyperlink fx:id="signUpLink" layoutX="45.0" layoutY="350.0" style="-fx-font-size: 1.3em; -fx-text-fill: #000;" text="Sing Up" />
-            <PasswordField layoutX="46.0" layoutY="292.0" promptText="min 6 max 12 characters" style="-fx-background-color: none; -fx-border-color: #000; -fx-border-style: hidden hidden solid hidden; -fx-text-fill: #000;" />
+            <Hyperlink fx:id="signUpLink" onAction="#singUpWindow" layoutX="45.0" layoutY="350.0" style="-fx-font-size: 1.3em; -fx-text-fill: #000;" text="Sing Up" />
+            <PasswordField fx:id="passwdTxTF" layoutX="46.0" layoutY="292.0" promptText="min 6 max 12 characters" style="-fx-background-color: none; -fx-border-color: #000; -fx-border-style: hidden hidden solid hidden; -fx-text-fill: #000;" />
             <Label layoutX="90.0" layoutY="53.0" style="-fx-font-size: 3em;" text="Login" />
          </children>
       </AnchorPane>
