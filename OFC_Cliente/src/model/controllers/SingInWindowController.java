@@ -41,7 +41,7 @@ public class SingInWindowController{
     private Button singInBtn;
     @FXML
     private TextField userNameTxTF;
-    @FXML
+     @FXML
     private PasswordField passwdTxTF;
     @FXML
     private ImageView passwrdTT;
