@@ -51,8 +51,6 @@ public class LogedWindowController {
     }
 
     /**
-     * FXML Controller class
-     * @author Jp 
      * this method will be close this view and open the SingInWindow
      */
     @FXML
@@ -63,21 +61,21 @@ public class LogedWindowController {
                 JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
             try {
-                //Gonna initialition a new Stage
+                //Initialition a new Stage
                 Stage mainStage = new Stage();
-                // we gonna create a URL for get the fxml view
+                //Create a URL for get the fxml view
                 URL viewLink = getClass().getResource(
                         "/model/views/SignInWindow.fxml");
-                // initialition loader
+                //Initialition loader
                 FXMLLoader loader = new FXMLLoader(viewLink);
-                //make the root with the loader
+                //Make the root with the loader
                 Parent root = (Parent) loader.load();
                 //Get the controller
                 SingInWindowController mainStageController
                         = ((SingInWindowController) loader.getController());
-                //set the stage
+                //Set the stage
                 mainStageController.setStage(mainStage);
-                //start the stage
+                //Start the stage
                 mainStageController.initStage(root);
                 try {
                     //close the actually View
