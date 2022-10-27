@@ -33,17 +33,6 @@ public class App extends Application {
                     = ((SingInWindowController) loader.getController());
             mainStageController.setStage(primaryStage);
             mainStageController.initStage(root);
-            
-             /*
-             Stage loginStage = new Stage();
-             URL viewLink = getClass().getResource("views/LogedWindow.fxml");
-
-            FXMLLoader loader = new FXMLLoader(viewLink);
-            Parent root = (Parent) loader.load();
-            LogedWindowController logedStageController
-                    = ((LogedWindowController) loader.getController());
-            logedStageController.setStage(loginStage);
-            logedStageController.initStage(root);*/
         } catch (IOException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }

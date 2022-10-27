@@ -5,7 +5,7 @@
 package model.controllers;
 
 
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,7 +27,6 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -70,16 +69,27 @@ public class SingInWindowController{
         //Show window
         this.stage.show();
     }
-    
-      private void windowShowing(WindowEvent event){
+    /**
+     * Window event method when start the Sign In Window
+     * 
+     * @param event The window event
+     */
+    private void windowShowing(WindowEvent event) {
         userNameTxTF.requestFocus();
         //Tooltip en los campos de usuario, contraseña y el link
         userNameTxTF.setTooltip(new Tooltip("max 15 characters"));
+        Tooltip.install(usernameTT, new Tooltip("max 15 characters"));
         passwdTxTF.setTooltip(new Tooltip("min 6 max 12 characters"));
+        Tooltip.install(passwrdTT, new Tooltip("min 6 max 12 characters"));
         signUpLink.setTooltip(new Tooltip("Click para abrir la ventana de registro"));
-      }
-      @FXML
-    private void singUpWindow(javafx.event.ActionEvent event) {
+    }
+    
+    /**
+     * Action event for Hyper link to open the window Sign Up.
+     * @param event Action event
+     */
+    @FXML
+    private void singUpWindow(ActionEvent event) {
         try {
             //Crea una escena a partir del Parent
             Parent root = FXMLLoader.load(getClass().getResource("/model/views/SignUpWindow.fxml"));
@@ -92,23 +102,39 @@ public class SingInWindowController{
             Logger.getLogger(SingInWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    /**
+     * User name validation length. If field is too long than 15 characters, show error message.
+     * Also checks that it does not contain special characters
+     * @param observable The value being observed.
+     */
     private void userNameLength(ObservableValue observable) {
+        String regex = "^[a-zA-Z1-9]*$";
         if (userNameTxTF.getText().length() > 15) {
             new Alert(AlertType.ERROR, "La longitud del campo usuario supera los 15 caracteres").showAndWait();
+        }else if(!userNameTxTF.getText().matches(regex)){
+             new Alert(AlertType.ERROR, "El campo contiene caracteres especiales").showAndWait();
         }
 
     }
-    
+    /**
+     * Password validation length. If field is less than 6 or long than 12 characters
+     * @param observable The value being observed.
+     */
     private void passwordLength(ObservableValue observable) {
-        if (passwdTxTF.getText().length() < 6 || passwdTxTF.getText().length() > 12) {
-            new Alert(AlertType.ERROR, "La longitud del campo contraseña es minimo de 6 o mayor que 12 caracteres").showAndWait();
+        if (passwdTxTF.getText().length() == 6) {
+            new Alert(AlertType.ERROR, "La longitud minima del campo contraseña son 6 caracteres").showAndWait();
+        }else if(passwdTxTF.getText().length() > 12){
+            new Alert(AlertType.ERROR, "La longitud del campo contraseña supera el maximo de 12 caracteres").showAndWait();
         }
 
     }
-
+    /**
+     * Action event for button SignIn. If fields user name and password is filled, show error message.
+     * Otherwise, open the window Loged.
+     * @param event 
+     */
     @FXML
-    private void signIn(javafx.event.ActionEvent event) {
+    private void signIn(ActionEvent event) {
         if (userNameTxTF.getText().isEmpty() || passwdTxTF.getText().isEmpty()) {
             new Alert(AlertType.ERROR, "Todos los campos no estan informados").showAndWait();
 
