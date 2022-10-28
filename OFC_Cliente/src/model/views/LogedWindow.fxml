@@ -23,7 +23,7 @@
                     </font>
                 </Label>
                 <Button fx:id="welcomeString" layoutX="261.0" layoutY="258.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="284.0" style="-fx-background-color: none; -fx-font-size: 2.5em;" text="WELCOME" textFill="WHITE" />
-                <Label fx:id="logoutLabel" layoutX="566.0" layoutY="54.0" onMouseClicked="#logout" text="Logout" textFill="WHITE">
+                <Label fx:id="logoutLabel" layoutX="566.0" layoutY="54.0" text="Logout" textFill="WHITE">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -33,7 +33,7 @@
                         <Image url="@../sources/profileIcon.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="logoutImage" fitHeight="23.0" fitWidth="33.0" layoutX="637.0" layoutY="54.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="logoutImage" fitHeight="23.0" fitWidth="33.0" layoutX="637.0" layoutY="54.0"  pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../sources/logoutIcon.png" />
                     </image>

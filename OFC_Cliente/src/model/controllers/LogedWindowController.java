@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
@@ -47,6 +48,8 @@ public class LogedWindowController {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("OFC SIGN IN");
+        logoutImage.setOnMouseClicked(this::logout);
+        logoutLabel.setOnMouseClicked(this::logout);
         stage.show();
     }
 
@@ -56,7 +59,7 @@ public class LogedWindowController {
      * this method will be close this view and open the SingInWindow
      */
     @FXML
-    public void logout() {
+    public void logout(MouseEvent event) {
         //We will confir if the user rly want to logout 
         Integer reply = JOptionPane.showConfirmDialog(null,
                 "Confirmar para salir", "confirmar",
