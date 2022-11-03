@@ -7,18 +7,22 @@ package model.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
+import javafx.stage.WindowEvent;
+import userPackage.User;
 
 /**
  * FXML Controller class
@@ -27,44 +31,56 @@ import javax.swing.JOptionPane;
  */
 public class LogedWindowController {
 
+    private User user;
     private Stage stage;
     @FXML
     private Label profileLabel;
     @FXML
-    private Button welcomeString;
+    private Label welcomeString;
     @FXML
     private Label logoutLabel;
     @FXML
     private ImageView profileImage;
     @FXML
     private ImageView logoutImage;
+        private static final Logger LOGGER = Logger.getLogger("model.controllers.LogedWindowController");
 
+    /**
+     * setStage
+     * @param stage 
+     */
     public void setStage(Stage stage) {
 
         this.stage = stage;
     }
-
+    /**
+     * this Method will start the stage
+     * @author Jp
+     * @param root 
+     */
     public void initStage(Parent root) {
+        LOGGER.info("Starting Stage");
+        //init the scene with the root you got from singInController
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("OFC SIGN IN");
+        //get the user from the singInController and init on the local User
+        this.user = getUser(user);
+        //set the Welcome Message
+        welcomeString.setText(user.getFullname() + "Welcome");
+        stage.setOnCloseRequest(this::cerrarVentana);
         logoutImage.setOnMouseClicked(this::logout);
         logoutLabel.setOnMouseClicked(this::logout);
         stage.show();
+        LOGGER.info("Stage Started");
     }
 
     /**
-     * FXML Controller class
+     * this Method will be close LogedWindow and start the SingInWindow
      * @author Jp 
-     * this method will be close this view and open the SingInWindow
      */
     @FXML
     public void logout(MouseEvent event) {
-        //We will confir if the user rly want to logout 
-        Integer reply = JOptionPane.showConfirmDialog(null,
-                "Confirmar para salir", "confirmar",
-                JOptionPane.YES_NO_OPTION);
-        if (reply == JOptionPane.YES_OPTION) {
             try {
                 //Gonna initialition a new Stage
                 Stage mainStage = new Stage();
@@ -82,21 +98,36 @@ public class LogedWindowController {
                 mainStageController.setStage(mainStage);
                 //start the stage
                 mainStageController.initStage(root);
-                try {
-                    //close the actually View
-                    this.stage.close();
-                } catch (Exception e) {
-
-                }
-
+                //close the actually View
+                this.stage.close();
             } catch (IOException ex) {
-
                 Logger.getLogger(LogedWindowController.class.getName())
                         .log(Level.SEVERE, null, ex);
-
             }
+    }
+    /**
+     * This Method confirm if the user want to close the window
+     * @author Iker
+     * @param event 
+     */
+     @FXML
+    public void cerrarVentana(WindowEvent event){
+        
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText("Quiere salir de la aplicacion?");
+        
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.get() == ButtonType.OK){
+            Platform.exit();
+        }else {
+            event.consume();
         }
-
+    }
+    
+    
+    public User getUser(User user){
+        
+        return user;
     }
     
     
