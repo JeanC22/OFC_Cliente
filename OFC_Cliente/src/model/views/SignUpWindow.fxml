@@ -86,6 +86,6 @@
               </ImageView>
           </graphic>
       </Button>
-      <TextField fx:id="pass_text" layoutX="465.0" layoutY="206.0"  style="-fx-background-color: none; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white; -fx-text-fill: white;" visible="false" />
+      <TextField fx:id="pass_text" layoutX="465.0" layoutY="206.0" scaleZ="0.0" style="-fx-background-color: none; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white; -fx-text-fill: white;" visible="false" />
    </children>
 </Pane>
