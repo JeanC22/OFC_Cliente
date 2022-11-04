@@ -39,6 +39,8 @@ import interfacePackage.mainInterface;
  * @colaborator Jp, Elias
  */
 import model.IntefaceFactory;
+import static userPackage.UserPrivilege.USER;
+import static userPackage.UserStatus.DISABLED;
 
 public class SingUpWindowController {
 
@@ -72,8 +74,8 @@ public class SingUpWindowController {
     private Button spBtn;
     @FXML
     private Button backBtn;
-    private Stage stage = new Stage();
-    private Boolean typeShow = false;
+    private Stage stage;
+    private Boolean typeShow = true;
     @FXML
     private TextField pass_text;
 
@@ -103,8 +105,10 @@ public class SingUpWindowController {
         stage.setResizable(false);
         userNameTxTF.setTooltip(new Tooltip("Max characters 15"));
         passwdTxPF.setTooltip(new Tooltip("min 6 and max 12 characters"));
+        pass_text.setTooltip(new Tooltip("min 6 and max 12 characters"));
         fullNameTxTF.setTooltip(new Tooltip("Max 40 characters"));
         eMailTxTF.setTooltip(new Tooltip("example@example.com"));
+        Tooltip.install(pass_text, new Tooltip("min 6 and max 12 characters"));
 
         Tooltip.install(userNameTT, new Tooltip("Max characters 15"));
         Tooltip.install(passwdTT, new Tooltip("min 6 and max 12 characters"));
@@ -134,7 +138,14 @@ public class SingUpWindowController {
             User user = new User();
             IntefaceFactory fac = new IntefaceFactory();
             mainInterface interFace = (mainInterface) fac.getInterface();
-
+            
+                if (!typeShow) {
+                    passwdTxPF.setText(pass_text.getText());
+                    passwdTxPF.setVisible(true);
+                    pass_text.setVisible(false);
+                    typeShow = true;
+                }
+                
             /**
              * Validate that the userName ,password ,fullName and eMail fields
              * are filled in. If they are not informed, an error message is
@@ -195,18 +206,37 @@ public class SingUpWindowController {
 
                 throw new Exception("El campo email notiene el formato adecuado"
                         + "(example@example.com)");
-
             }
-
             user.setUsername(this.userNameTxTF.getText());
             user.setPassword(this.passwdTxPF.getText());
             user.setFullname(this.fullNameTxTF.getText());
             user.setEmail(this.eMailTxTF.getText());
+            user.setPrivileges(USER);
+            user.setStatus(DISABLED);
             try {
                 interFace.signUp(user);
+
+                Stage primaryStage = new Stage();
+
+                //link to get the FXML file
+                URL viewLink = getClass().getResource("/model/views/SignInWindow.fxml");
+                //initialization the loader witk the FXML file
+                FXMLLoader loader = new FXMLLoader(viewLink);
+                //initialization the root (Parent) with the FXML Loader.load
+                Parent root = (Parent) loader.load();
+                //initialization the singInController
+                SingInWindowController mainStageController
+                        = ((SingInWindowController) loader.getController());
+                //set the Stage to the controll
+                mainStageController.setStage(primaryStage);
+                //Start the Stage
+                mainStageController.initStage(root);
+
+                //close the actually View
+                this.stage.close();
+
             } catch (ServerConnectionException | SignUpUsernameException | SignUpEmailException | SignUpEmailAndUsernameException ex) {
                 LOGGER.severe(ex.getMessage());
-
                 throw new Exception(ex.getMessage());
 
             }
@@ -214,6 +244,7 @@ public class SingUpWindowController {
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
             alert.showAndWait();
+            setEmptyAllField();
         }
 
     }
@@ -278,14 +309,21 @@ public class SingUpWindowController {
             pass_text.setText(passwdTxPF.getText());
             pass_text.setVisible(true);
             passwdTxPF.setVisible(false);
-            typeShow = false;
-            return typeShow;
+
+            return typeShow = false;
         }
-        passwdTxPF.setVisible(true);
         passwdTxPF.setText(pass_text.getText());
+        passwdTxPF.setVisible(true);
         pass_text.setVisible(false);
-        typeShow = true;
-        return typeShow;
+        return typeShow = true;
+    }
+
+    public void setEmptyAllField() {
+        userNameTxTF.setText("");
+        passwdTxPF.setText("");
+        pass_text.setText("");
+        fullNameTxTF.setText("");
+        eMailTxTF.setText("");
     }
 
 }
