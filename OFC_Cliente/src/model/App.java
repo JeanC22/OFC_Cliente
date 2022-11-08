@@ -21,6 +21,10 @@ import model.controllers.SingInWindowController;
  */
 public class App extends Application {
 
+    /**
+     *
+     * @param primaryStage
+     */
     @Override
     public void start(Stage primaryStage) {
 

@@ -43,20 +43,23 @@ public class LogedWindowController {
     private ImageView profileImage;
     @FXML
     private ImageView logoutImage;
-        private static final Logger LOGGER = Logger.getLogger("model.controllers.LogedWindowController");
+    private static final Logger LOGGER = Logger.getLogger("model.controllers.LogedWindowController");
 
     /**
      * setStage
-     * @param stage 
+     *
+     * @param stage
      */
     public void setStage(Stage stage) {
 
         this.stage = stage;
     }
+
     /**
      * this Method will start the stage
+     *
      * @author Jp
-     * @param root 
+     * @param root
      */
     public void initStage(Parent root) {
         LOGGER.info("Starting Stage");
@@ -65,70 +68,75 @@ public class LogedWindowController {
         stage.setScene(scene);
         stage.setTitle("OFC SIGN IN");
         //get the user from the singInController and init on the local User
-        this.user = getUser(user);
-        //set the Welcome Message
-        welcomeString.setText(user.getFullname() + "Welcome");
+
         stage.setOnCloseRequest(this::cerrarVentana);
         logoutImage.setOnMouseClicked(this::logout);
         logoutLabel.setOnMouseClicked(this::logout);
+        setWelcomeMessage(user.getUsername());
         stage.show();
         LOGGER.info("Stage Started");
     }
 
     /**
      * this Method will be close LogedWindow and start the SingInWindow
-     * @author Jp 
+     *
+     * @author Jp
      */
     @FXML
     public void logout(MouseEvent event) {
-            try {
-                //Gonna initialition a new Stage
-                Stage mainStage = new Stage();
-                // we gonna create a URL for get the fxml view
-                URL viewLink = getClass().getResource(
-                        "/model/views/SignInWindow.fxml");
-                // initialition loader
-                FXMLLoader loader = new FXMLLoader(viewLink);
-                //make the root with the loader
-                Parent root = (Parent) loader.load();
-                //Get the controller
-                SingInWindowController mainStageController
-                        = ((SingInWindowController) loader.getController());
-                //set the stage
-                mainStageController.setStage(mainStage);
-                //start the stage
-                mainStageController.initStage(root);
-                //close the actually View
-                this.stage.close();
-            } catch (IOException ex) {
-                Logger.getLogger(LogedWindowController.class.getName())
-                        .log(Level.SEVERE, null, ex);
-            }
+        try {
+            //Gonna initialition a new Stage
+            Stage mainStage = new Stage();
+            // we gonna create a URL for get the fxml view
+            URL viewLink = getClass().getResource(
+                    "/model/views/SignInWindow.fxml");
+            // initialition loader
+            FXMLLoader loader = new FXMLLoader(viewLink);
+            //make the root with the loader
+            Parent root = (Parent) loader.load();
+            //Get the controller
+            SingInWindowController mainStageController
+                    = ((SingInWindowController) loader.getController());
+            //set the stage
+            mainStageController.setStage(mainStage);
+            //start the stage
+            mainStageController.initStage(root);
+            //close the actually View
+            this.stage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(LogedWindowController.class.getName())
+                    .log(Level.SEVERE, null, ex);
+        }
     }
+
     /**
      * This Method confirm if the user want to close the window
+     *
      * @author Iker
-     * @param event 
+     * @param event
      */
-     @FXML
-    public void cerrarVentana(WindowEvent event){
-        
+    @FXML
+    public void cerrarVentana(WindowEvent event) {
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText("Quiere salir de la aplicacion?");
-        
+        alert.getDialogPane().getStylesheets().add(
+                getClass().getResource("/model/views/dialog.css").toExternalForm());
         Optional<ButtonType> result = alert.showAndWait();
-        if(result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             Platform.exit();
-        }else {
+        } else {
             event.consume();
         }
     }
-    
-    
-    public User getUser(User user){
-        
+
+    public User getUser(User userLogin) {
+        this.user = userLogin;
         return user;
     }
-    
-    
+
+    public void setWelcomeMessage(String name) {
+        welcomeString.setText(" Welcome    " + name);
+    }
+
 }

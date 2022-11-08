@@ -86,6 +86,7 @@ public class SingInWindowController {
         stage.setOnCloseRequest(this::cerrarVentana);
         //Show window
         stage.show();
+
     }
 
     /**
@@ -127,6 +128,7 @@ public class SingInWindowController {
             mainStageController.setStage(mainStage);
             //start the stage
             mainStageController.initStage(root);
+
             this.stage.close();
         } catch (IOException ex) {
             Logger.getLogger(SingInWindowController.class.getName())
@@ -146,21 +148,24 @@ public class SingInWindowController {
             if (userNameTxTF.getText().isEmpty() || passwdTxPF.getText().isEmpty()) {
                 throw new Exception("Todos los campos no estan informados");
             }
+
             if (userNameTxTF.getText().length() > 15) {
                 throw new Exception("La longitud del "
                         + "campo user supera los 15 caracteres");
             }
+
             if (!userNameTxTF.getText().matches(regex)) {
-                new Alert(AlertType.ERROR,
+                throw new Exception(
                         "El campo contiene"
-                                + " caracteres especiales").showAndWait();
+                        + " caracteres especiales");
             }
+
             if (passwdTxPF.getText().length() < 6 || passwdTxPF.getText().length() > 12) {
-                new Alert(AlertType.ERROR, 
+                throw new Exception(
                         "El campo password es minimo "
-                                + "de 6 caracteres o maximo de 12").showAndWait();
+                        + "de 6 caracteres o maximo de 12");
             }
-            
+
             IntefaceFactory facInterface = new IntefaceFactory();
             mainInterface interFace = (mainInterface) facInterface.getInterface();
             User user = new User();
@@ -168,54 +173,53 @@ public class SingInWindowController {
             user.setUsername(userNameTxTF.getText());
             user.setPassword(passwdTxPF.getText());
             try {
-                userLoged = interFace.signIn(user);
-            } catch (ServerConnectionException | LoginUsernameException | 
-                    LoginPasswordException | LoginUsernameAndPasswordException ex) {
-                try {
-                    throw new Exception(ex.getMessage());
-                } catch (Exception e) {
-                    LOGGER.severe(e.getMessage());
-                    Alert alert = new Alert(Alert.AlertType.ERROR,
-                            e.getMessage(), ButtonType.OK);
-                    alert.showAndWait();
-                }
+                this.userLoged = interFace.signIn(user);
+
+                Stage loginStage = new Stage();
+
+                URL viewLink = getClass().getResource("/model/views/LogedWindow.fxml");
+
+                FXMLLoader loader = new FXMLLoader(viewLink);
+                Parent root = (Parent) loader.load();
+                LogedWindowController logedStageController
+                        = ((LogedWindowController) loader.getController());
+                //send te user
+                logedStageController.getUser(userLoged);
+                logedStageController.setStage(loginStage);
+                logedStageController.initStage(root);
+                //close the actually View
+                this.stage.close();
+
+            } catch (ServerConnectionException | LoginUsernameException
+                    | LoginPasswordException | LoginUsernameAndPasswordException ex) {
+                throw new Exception(ex.getMessage());
+
             }
-
-            Stage loginStage = new Stage();
-
-            URL viewLink = getClass().getResource("/model/views/LogedWindow.fxml");
-
-            FXMLLoader loader = new FXMLLoader(viewLink);
-            Parent root = (Parent) loader.load();
-            LogedWindowController logedStageController
-                    = ((LogedWindowController) loader.getController());
-            //send te user
-            logedStageController.getUser(userLoged);
-            logedStageController.setStage(loginStage);
-            logedStageController.initStage(root);
-
-            //close the actually View
-            this.stage.close();
-
-        } catch (IOException ex) {
-            Logger.getLogger(LogedWindowController.class.getName())
-                    .log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
+            Alert alert = new Alert(AlertType.ERROR, ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().getStylesheets().add(
+                    getClass().getResource("/model/views/dialog.css").toExternalForm());
+
+            alert.showAndWait();
             Logger.getLogger(SingInWindowController.class.getName())
                     .log(Level.SEVERE, null, ex);
         }
     }
 
     /**
-     * 
+     *
      * @author Elias
-     * @param event 
+     * @param event
      */
     @FXML
     public void cerrarVentana(WindowEvent event) {
+        Logger.getLogger(SingInWindowController.class.getName())
+                .log(Level.SEVERE, null, "se ha cerrado la ventana");
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText("Quiere salir de la aplicacion?");
+        alert.getDialogPane().getStylesheets().add(
+                getClass().getResource("/model/views/dialog.css").toExternalForm());
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {

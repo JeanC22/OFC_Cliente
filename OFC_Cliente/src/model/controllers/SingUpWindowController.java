@@ -32,6 +32,7 @@ import javafx.stage.WindowEvent;
 import userPackage.User;
 import interfacePackage.mainInterface;
 
+
 /**
  * FXML Controller class
  *
@@ -138,14 +139,14 @@ public class SingUpWindowController {
             User user = new User();
             IntefaceFactory fac = new IntefaceFactory();
             mainInterface interFace = (mainInterface) fac.getInterface();
-            
-                if (!typeShow) {
-                    passwdTxPF.setText(pass_text.getText());
-                    passwdTxPF.setVisible(true);
-                    pass_text.setVisible(false);
-                    typeShow = true;
-                }
-                
+
+            if (!typeShow) {
+                passwdTxPF.setText(pass_text.getText());
+                passwdTxPF.setVisible(true);
+                pass_text.setVisible(false);
+                typeShow = true;
+            }
+
             /**
              * Validate that the userName ,password ,fullName and eMail fields
              * are filled in. If they are not informed, an error message is
@@ -241,9 +242,14 @@ public class SingUpWindowController {
 
             }
 
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+        } catch (Exception ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().getStylesheets().add(
+                    getClass().getResource("/model/views/dialog.css").toExternalForm());
+
             alert.showAndWait();
+            Logger.getLogger(SingUpWindowController.class.getName())
+                    .log(Level.SEVERE, null, ex);
             setEmptyAllField();
         }
 
@@ -286,6 +292,9 @@ public class SingUpWindowController {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText("Quiere salir de la aplicacion?");
+        alert.getDialogPane().getStylesheets().add(
+                    getClass().getResource("/model/views/dialog.css").toExternalForm());
+
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {

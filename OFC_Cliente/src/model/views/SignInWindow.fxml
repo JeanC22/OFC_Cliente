@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="model.controllers.SingInWindowController">
+<Pane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:id="OFC_SIGN_IN" fx:controller="model.controllers.SingInWindowController">
    <children>
       <AnchorPane layoutX="269.0" prefHeight="600.0" prefWidth="543.0" style="-fx-background-color: #0f0f0f;">
          <children>
@@ -26,7 +26,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="600.0" prefWidth="272.0" style="-fx-background-color: #FFE98F;">
          <children>
-            <Button fx:id="singInBtn" layoutX="74.0" layoutY="435.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="122.0" style="-fx-background-color: #000; -fx-font-size: 1.7em; -fx-text-fill: #FFE98F #FFE98F; -fx-background-radius: 50em;" text="SING IN">
+            <Button id="singInBtn" fx:id="singInBtn" layoutX="74.0" layoutY="435.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="122.0" style="-fx-background-color: #000; -fx-font-size: 1.7em; -fx-text-fill: #FFE98F #FFE98F; -fx-background-radius: 50em;" text="SING IN">
                <font>
                   <Font size="16.0" />
                </font>
@@ -44,7 +44,7 @@
                <font>
                   <Font size="16.0" />
                </font></Label>
-            <TextField id="userID" fx:id="userNameTxTF" layoutX="46.0" layoutY="183.0" promptText="max 15 characters" style="-fx-background-color: none; -fx-border-color: black; -fx-border-style: hidden hidden solid hidden; -fx-text-fill: #000;" />
+            <TextField id="userNameTxTF" fx:id="userNameTxTF" layoutX="46.0" layoutY="183.0" promptText="max 15 characters" style="-fx-background-color: none; -fx-border-color: black; -fx-border-style: hidden hidden solid hidden; -fx-text-fill: #000;" />
             <Label layoutX="46.0" layoutY="264.0" text="Password">
                <font>
                   <Font name="Arial" size="16.0" />
@@ -58,8 +58,8 @@
                <image>
                   <Image url="@../sources/questionIconBlack.png" />
                </image></ImageView>
-               <PasswordField fx:id="passwdTxPF" layoutX="46.0" layoutY="292.0" promptText="min 6 max 12 characters" style="-fx-background-color: none; -fx-border-color: #000; -fx-border-style: hidden hidden solid hidden; -fx-text-fill: #000;" />
-             <Hyperlink fx:id="signUpLink" onAction="#singUpWindow" layoutX="45.0" layoutY="350.0" style="-fx-font-size: 1.3em; -fx-text-fill: #000;" text="Sing Up" />
+               <PasswordField id="passwdTxPF" fx:id="passwdTxPF" layoutX="46.0" layoutY="292.0" promptText="min 6 max 12 characters" style="-fx-background-color: none; -fx-border-color: #000; -fx-border-style: hidden hidden solid hidden; -fx-text-fill: #000;" />
+             <Hyperlink fx:id="signUpLink" layoutX="45.0" layoutY="350.0" onAction="#singUpWindow" style="-fx-font-size: 1.3em; -fx-text-fill: #000;" text="Sing Up" />
             <Label layoutX="90.0" layoutY="53.0" style="-fx-font-size: 3em;" text="Login" />
          </children>
       </AnchorPane>
