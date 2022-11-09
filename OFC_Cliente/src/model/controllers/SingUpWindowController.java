@@ -95,6 +95,7 @@ public class SingUpWindowController {
      * Initializes the controller class.
      *
      * @param root
+     * @author iker
      */
     public void initStage(Parent root) {
         Scene scene = new Scene(root);
@@ -116,9 +117,7 @@ public class SingUpWindowController {
         Tooltip.install(fullNameTT, new Tooltip("Max 40 characters"));
         Tooltip.install(eMailTT, new Tooltip("example@example.com"));
 
-        /**
-         * these are the actions of the window with the method references
-         */
+        //these are the actions of the window with the method references
         spBtn.setOnAction(this::showPasswd);
         signUpBtn.setOnAction(this::signUp);
         backBtn.setOnAction(this::backBtn);
@@ -130,9 +129,13 @@ public class SingUpWindowController {
 
     /**
      * this method validates that the data is correct and then sends a user to
-     * register.
+     * register.if there is any failure it will show an alert with the failure
+     * information and if there is no failure it will take us to the signin 
+     * window.
      *
+     * 
      * @param event
+     * @author iker
      */
     private void signUp(ActionEvent event) {
         try {
@@ -147,11 +150,11 @@ public class SingUpWindowController {
                 typeShow = true;
             }
 
-            /**
-             * Validate that the userName ,password ,fullName and eMail fields
-             * are filled in. If they are not informed, an error message is
-             * displayed.
-             */
+            
+             //Validate that the userName ,password ,fullName and eMail fields
+             //are filled in. If they are not informed, an error message is
+             //displayed.
+             
             if (this.userNameTxTF.getText().trim().equalsIgnoreCase("")
                     || this.passwdTxPF.getText().trim().equalsIgnoreCase("")
                     || this.eMailTxTF.getText().trim().equalsIgnoreCase("")
@@ -160,10 +163,10 @@ public class SingUpWindowController {
                 throw new Exception("Uno de los campos no esta informado");
 
             }
-            /**
-             * Validate userName length max. 15 characters and no special
-             * characters if it is longer than 15 characters or has special
-             * characters, an error is displayed.
+            /*
+              Validate userName length max. 15 characters and no special
+              characters if it is longer than 15 characters or has special
+              characters, an error is displayed.
              */
             if (!this.userNameTxTF.getText().matches(regex)
                     || this.userNameTxTF.getText().length() > 15) {
@@ -173,10 +176,10 @@ public class SingUpWindowController {
                         + "caracteres permitidos(max 15)");
 
             }
-            /**
-             * Validate that the password length is a minimum of 6 characters
-             * and a maximum of 12 characters,if it is less than 6 characters an
-             * error message will be displayed.
+            /*
+              Validate that the password length is a minimum of 6 characters
+              and a maximum of 12 characters,if it is less than 6 characters an
+              error message will be displayed.
              */
             if (this.passwdTxPF.getText().length() < 6
                     || this.passwdTxPF.getText().length() > 12) {
@@ -185,10 +188,10 @@ public class SingUpWindowController {
                         + "caracteres y maximo de 12 caracteres");
 
             }
-            /**
-             * Validate that the length of the fullname is 40 characters
-             * maximum,If it is longer than 40 characters an error message will
-             * be displayed.
+            /*
+              Validate that the length of the fullname is 40 characters
+              maximum,If it is longer than 40 characters an error message will
+              be displayed.
              */
             if (!this.fullNameTxTF.getText().matches(regex)
                     || this.fullNameTxTF.getText().length() > 40) {
@@ -198,10 +201,10 @@ public class SingUpWindowController {
                         + "caracteres permitidos(max 40)");
 
             }
-            /**
-             * Validate that the format of the eMail(eMailTxTF) by means of an
-             * Email pattern, if it does not have the correct format an error
-             * message will be displayed.
+            /*
+              Validate that the format of the eMail(eMailTxTF) by means of an
+              Email pattern, if it does not have the correct format an error
+              message will be displayed.
              */
             if (!this.eMailTxTF.getText().matches(regexEmail)) {
 
@@ -259,6 +262,7 @@ public class SingUpWindowController {
      * This method is to send us to the previous window when we click on the
      * arrow.
      *
+     * @author iker
      * @param event
      */
     private void backBtn(ActionEvent event) {
@@ -287,6 +291,7 @@ public class SingUpWindowController {
      * confirmation to exit.
      *
      * @param event
+     * @author iker
      */
     public void cerrarVentana(WindowEvent event) {
 
@@ -305,11 +310,11 @@ public class SingUpWindowController {
     }
 
     /**
-     * @param event
-     * @author Jp
-     * @colaborator Iker passwordField. when typeShow is true this will be set
+     * when typeShow is true this will be set
      * Visible passwordField when typeShow is false the passwd will ve set
      * visible
+     * @param event
+     * @author Jp,iker
      * @return typeShow (boolean)
      */
     public Boolean showPasswd(ActionEvent event) {
@@ -327,6 +332,10 @@ public class SingUpWindowController {
         return typeShow = true;
     }
 
+    /**
+     * This method clear all the fields of the window
+     * @author JP
+     */
     public void setEmptyAllField() {
         userNameTxTF.setText("");
         passwdTxPF.setText("");

@@ -6,7 +6,7 @@ package model;
 
 
 /**
- *
+ * This is the class IntefaceFactory
  * @author jp22
  */
 public class IntefaceFactory {
