@@ -31,6 +31,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import userPackage.User;
 import interfacePackage.mainInterface;
+import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -80,6 +81,8 @@ public class SignUpWindowController {
     private TextField pass_text;
 
     private static final Logger LOGGER = Logger.getLogger("model.controllers.SignUpWindowController");
+    @FXML
+    private Pane OFC_SIGN_UP;
 
     /**
      * we create a stage with which we take from the parameter

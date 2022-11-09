@@ -20,7 +20,6 @@ import exceptions.SignUpEmailException;
 import exceptions.SignUpUsernameException;
 import interfacePackage.mainInterface;
 import java.io.IOException;
-import java.net.ConnectException;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.net.SocketException;
@@ -36,7 +35,7 @@ import java.util.logging.Logger;
 public class SocketCliente implements mainInterface {
 
     static final String HOST = ResourceBundle.getBundle("model.PropertiesFile").getString("host");
-    static final Integer PUERTO = (Integer) ResourceBundle.getBundle("model.PropertiesFile").getObject("port");
+    static final Integer PUERTO = Integer.valueOf(ResourceBundle.getBundle("model.PropertiesFile").getString("port"));
     private Message message;
     private static final Logger LOGGER = Logger.getLogger("model.socketCliente");
     Socket skCliente;

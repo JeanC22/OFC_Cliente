@@ -33,7 +33,7 @@ public class App extends Application {
         LOGGER.info("Starting SingInWindow");
         try {
             //link to get the FXML file
-            URL viewLink = getClass().getResource("views/SignInWindow.fxml");
+            URL viewLink = getClass().getResource("/model/views/SignInWindow.fxml");
             //initialization the loader witk the FXML file
             FXMLLoader loader = new FXMLLoader(viewLink);
             //initialization the root (Parent) with the FXML Loader.load
