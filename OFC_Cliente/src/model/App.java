@@ -16,18 +16,21 @@ import javafx.stage.Stage;
 import model.controllers.SingInWindowController;
 
 /**
- *  
+ *
  * @author Jp
  */
 public class App extends Application {
 
+    private static final Logger LOGGER = Logger.getLogger("model.App");
+
     /**
+     * This method will be start the Window
      *
      * @param primaryStage
      */
     @Override
     public void start(Stage primaryStage) {
-
+        LOGGER.info("Starting SingInWindow");
         try {
             //link to get the FXML file
             URL viewLink = getClass().getResource("views/SignInWindow.fxml");
@@ -42,8 +45,10 @@ public class App extends Application {
             mainStageController.setStage(primaryStage);
             //Start the Stage
             mainStageController.initStage(root);
+            LOGGER.info("Started SingInWindow");
+
         } catch (IOException ex) {
-            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
 
     }

@@ -29,6 +29,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.IntefaceFactory;
@@ -60,13 +61,15 @@ public class SingInWindowController {
     private User userLoged;
 
     private static final Logger LOGGER = Logger.getLogger("model.controllers.SingInWindowController");
+    @FXML
+    private Pane OFC_SIGN_IN;
 
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
     /**
-     * this Method will start the stage
+     * This method will start the window
      *
      * @author Jp
      * @param root
@@ -78,41 +81,55 @@ public class SingInWindowController {
 
         //Associate scene to primaryStage(Window)
         stage.setScene(scene);
-        //Set window properties
+        //title of the window: OFC SIGN IN.
         stage.setTitle("OFC SING IN");
         stage.setResizable(false);
         stage.setOnShowing(this::windowShowing);
         singInBtn.setOnAction(this::signIn);
+        signUpLink.setOnAction(this::signUpWindow);
         stage.setOnCloseRequest(this::cerrarVentana);
         //Show window
         stage.show();
+        LOGGER.info("La ventana de Sign In esta iniciada");
 
     }
 
     /**
-     * Window event method when start the Sign In Window
+     * This method will be set all the Tooltips
      *
      * @author Elias
-     * @param event The window event
+     * @param event
      */
     private void windowShowing(WindowEvent event) {
+        LOGGER.info("Method windowShowing is starting ");
+
+        //The field (userNameTxTF) has the focus
         userNameTxTF.requestFocus();
-        //Tooltip en los campos de usuario, contraseña y el link
+        //The field (userNameTxTF) will be shown with a ToolTip the message “max 15 characters”. 
         userNameTxTF.setTooltip(new Tooltip("max 15 characters"));
+        //The field (usernameTT) will be shown with a ToolTip the message “max 15 characters”. 
         Tooltip.install(usernameTT, new Tooltip("max 15 characters"));
+        //The field (passwdTxPF) will be shown with a ToolTip the message “min 6 max 12 characters”
         passwdTxPF.setTooltip(new Tooltip("min 6 max 12 characters"));
+        //The field (passwrdTT) will be shown with a ToolTip the message “min 6 max 12 characters”
         Tooltip.install(passwrdTT, new Tooltip("min 6 max 12 characters"));
+        //The HyperLink (signUpLink) will be shown with a ToolTip the message “Click para abrir la ventana de registro”. 
         signUpLink.setTooltip(new Tooltip("Click para abrir la ventana de registro"));
+        LOGGER.info("Method windowShowing is finished");
+
     }
 
     /**
-     * Action event for Hyper link to open the window Sign Up.
+     * This method will be start the SignUpWindow and close the SignInWindow
+     *
      *
      * @author Jp
-     * @param event Action event
+     * @param event
      */
     @FXML
-    private void singUpWindow(ActionEvent event) {
+    private void signUpWindow(ActionEvent event) {
+        LOGGER.info("Method signUpWindow is starting");
+
         try {
             Stage mainStage = new Stage();
             URL viewLink = getClass().getResource(
@@ -130,41 +147,54 @@ public class SingInWindowController {
             mainStageController.initStage(root);
 
             this.stage.close();
+            LOGGER.info("Method signUpWindow is finished");
+
         } catch (IOException ex) {
             Logger.getLogger(SingInWindowController.class.getName())
-                    .log(Level.SEVERE, null, ex);
+                    .log(Level.SEVERE, ex.getMessage(), ex);
         }
+
     }
 
     /**
-     * Action event for button SignIn. If fields user name and password is
-     * filled, show error message. Otherwise, open the window Loged.
+     * This method will be Sign In if the User exist and all fields are correct
+     * will be start the LogedWindow.
      *
-     * @collaborators Elias, Iker and Jp
+     * @author Elias, Iker and Jp
      * @param event
      */
     private void signIn(ActionEvent event) {
+        LOGGER.info("Method signIn is starting");
+
         try {
+            //Validar que el campo userName (userNameTxTF) y el campo password (passwdTxTF) están informados:
             if (userNameTxTF.getText().isEmpty() || passwdTxPF.getText().isEmpty()) {
                 throw new Exception("Todos los campos no estan informados");
             }
+            //Validar la longitud userName (userNameTxTF) máximo 15 caracteres:
 
             if (userNameTxTF.getText().length() > 15) {
                 throw new Exception("La longitud del "
                         + "campo user supera los 15 caracteres");
             }
-
+            //Validar que el userName (userNameTxTF) no cuenta con caracteres especiales:
             if (!userNameTxTF.getText().matches(regex)) {
                 throw new Exception(
                         "El campo contiene"
                         + " caracteres especiales");
             }
+            //Validar que la longitud del password (passwdTxTF) es mínimo de 6 caracteres
+            //Validar que la longitud del password(passwdTxTF) es máximo 12 caracteres
 
             if (passwdTxPF.getText().length() < 6 || passwdTxPF.getText().length() > 12) {
                 throw new Exception(
                         "El campo password es minimo "
                         + "de 6 caracteres o maximo de 12");
             }
+            //Si todos los campos han sido validados correctamente se 
+            //recogen los datos y se crea un objeto (Usuario), 
+            //se llamará al método singIn(Usuario) de la interfaceClient 
+            //enviando el objeto (Usuario) 
 
             IntefaceFactory facInterface = new IntefaceFactory();
             mainInterface interFace = (mainInterface) facInterface.getInterface();
@@ -189,6 +219,7 @@ public class SingInWindowController {
                 logedStageController.initStage(root);
                 //close the actually View
                 this.stage.close();
+                LOGGER.info("Method signIn is finished");
 
             } catch (ServerConnectionException | LoginUsernameException
                     | LoginPasswordException | LoginUsernameAndPasswordException ex) {
@@ -201,20 +232,21 @@ public class SingInWindowController {
                     getClass().getResource("/model/views/dialog.css").toExternalForm());
 
             alert.showAndWait();
+            setEmptyAllField();
             Logger.getLogger(SingInWindowController.class.getName())
-                    .log(Level.SEVERE, null, ex);
+                    .log(Level.SEVERE, ex.getMessage(), ex);
         }
     }
 
     /**
+     * This method will question you before close the windown if is he want to
+     * close
      *
      * @author Elias
      * @param event
      */
-    @FXML
     public void cerrarVentana(WindowEvent event) {
-        Logger.getLogger(SingInWindowController.class.getName())
-                .log(Level.SEVERE, null, "se ha cerrado la ventana");
+        LOGGER.info("Method cerrarVentana is starting");
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText("Quiere salir de la aplicacion?");
@@ -224,9 +256,22 @@ public class SingInWindowController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             Platform.exit();
+            LOGGER.info("Method cerrarVentana is finished");
+
         } else {
             event.consume();
         }
+    }
+
+    /**
+     * this method will be clear all fields
+     */
+    public void setEmptyAllField() {
+        LOGGER.info("Method setEmptyAllField is starting");
+        userNameTxTF.setText("");
+        passwdTxPF.setText("");
+        LOGGER.info("Method setEmptyAllField is finished");
+
     }
 
 }
