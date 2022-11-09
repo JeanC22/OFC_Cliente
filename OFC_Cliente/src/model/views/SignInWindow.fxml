@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="OFC_SIGN_IN" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="model.controllers.SingInWindowController">
+<Pane fx:id="OFC_SIGN_IN" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="model.controllers.SignInWindowController">
    <children>
       <AnchorPane layoutX="269.0" prefHeight="600.0" prefWidth="543.0" style="-fx-background-color: #0f0f0f;">
          <children>

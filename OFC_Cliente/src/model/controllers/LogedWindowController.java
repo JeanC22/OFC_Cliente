@@ -84,6 +84,7 @@ public class LogedWindowController {
      */
     @FXML
     public void logout(MouseEvent event) {
+        LOGGER.info("starting logout");
         try {
             //Gonna initialition a new Stage
             Stage mainStage = new Stage();
@@ -95,17 +96,19 @@ public class LogedWindowController {
             //make the root with the loader
             Parent root = (Parent) loader.load();
             //Get the controller
-            SingInWindowController mainStageController
-                    = ((SingInWindowController) loader.getController());
+            SignInWindowController mainStageController
+                    = ((SignInWindowController) loader.getController());
             //set the stage
             mainStageController.setStage(mainStage);
             //start the stage
             mainStageController.initStage(root);
             //close the actually View
             this.stage.close();
+            LOGGER.info("finished logout");
+
         } catch (IOException ex) {
             Logger.getLogger(LogedWindowController.class.getName())
-                    .log(Level.SEVERE, null, ex);
+                    .log(Level.SEVERE, ex.getMessage(), ex);
         }
     }
 
@@ -117,6 +120,7 @@ public class LogedWindowController {
      */
     @FXML
     public void cerrarVentana(WindowEvent event) {
+        LOGGER.info("starting cerrarVentana");
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText("Quiere salir de la aplicacion?");
@@ -125,6 +129,8 @@ public class LogedWindowController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
             Platform.exit();
+            LOGGER.info("finished cerrarVentana");
+
         } else {
             event.consume();
         }

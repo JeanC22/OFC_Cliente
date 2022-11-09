@@ -14,9 +14,9 @@ public class IntefaceFactory {
         public IntefaceFactory(){
             
         }
-        public socketCliente getInterface(){
+        public SocketCliente getInterface(){
             
-            socketCliente socket = new socketCliente();
+            SocketCliente socket = new SocketCliente();
             return socket;
         }
     

@@ -40,7 +40,7 @@ import userPackage.User;
  *
  * @author Elias
  */
-public class SingInWindowController {
+public class SignInWindowController {
 
     private static String regex = "^[a-zA-Z1-9]*$";
     private Stage stage;
@@ -60,7 +60,7 @@ public class SingInWindowController {
     private Hyperlink signUpLink;
     private User userLoged;
 
-    private static final Logger LOGGER = Logger.getLogger("model.controllers.SingInWindowController");
+    private static final Logger LOGGER = Logger.getLogger("model.controllers.SignInWindowController");
     @FXML
     private Pane OFC_SIGN_IN;
 
@@ -75,7 +75,7 @@ public class SingInWindowController {
      * @param root
      */
     public void initStage(Parent root) {
-        LOGGER.info("Incializando la ventana de Sign In");
+        LOGGER.info("starting initStage(SignIN)");
         //Create a scene associated to the node graph root.
         Scene scene = new Scene(root);
 
@@ -90,7 +90,7 @@ public class SingInWindowController {
         stage.setOnCloseRequest(this::cerrarVentana);
         //Show window
         stage.show();
-        LOGGER.info("La ventana de Sign In esta iniciada");
+        LOGGER.info("finished initStage(SignIN)");
 
     }
 
@@ -139,8 +139,8 @@ public class SingInWindowController {
             //make the root with the loader
             Parent root = (Parent) loader.load();
             //Get the controller
-            SingUpWindowController mainStageController
-                    = ((SingUpWindowController) loader.getController());
+            SignUpWindowController mainStageController
+                    = ((SignUpWindowController) loader.getController());
             //set the stage
             mainStageController.setStage(mainStage);
             //start the stage
@@ -150,7 +150,7 @@ public class SingInWindowController {
             LOGGER.info("Method signUpWindow is finished");
 
         } catch (IOException ex) {
-            Logger.getLogger(SingInWindowController.class.getName())
+            Logger.getLogger(SignInWindowController.class.getName())
                     .log(Level.SEVERE, ex.getMessage(), ex);
         }
 
@@ -233,7 +233,7 @@ public class SingInWindowController {
 
             alert.showAndWait();
             setEmptyAllField();
-            Logger.getLogger(SingInWindowController.class.getName())
+            Logger.getLogger(SignInWindowController.class.getName())
                     .log(Level.SEVERE, ex.getMessage(), ex);
         }
     }

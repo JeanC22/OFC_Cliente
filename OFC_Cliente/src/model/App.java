@@ -13,7 +13,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
-import model.controllers.SingInWindowController;
+import model.controllers.SignInWindowController;
 
 /**
  *
@@ -39,8 +39,8 @@ public class App extends Application {
             //initialization the root (Parent) with the FXML Loader.load
             Parent root = (Parent) loader.load();
             //initialization the singInController
-            SingInWindowController mainStageController
-                    = ((SingInWindowController) loader.getController());
+            SignInWindowController mainStageController
+                    = ((SignInWindowController) loader.getController());
             //set the Stage to the controll
             mainStageController.setStage(primaryStage);
             //Start the Stage

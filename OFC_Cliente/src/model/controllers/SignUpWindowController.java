@@ -32,7 +32,6 @@ import javafx.stage.WindowEvent;
 import userPackage.User;
 import interfacePackage.mainInterface;
 
-
 /**
  * FXML Controller class
  *
@@ -43,7 +42,7 @@ import model.IntefaceFactory;
 import static userPackage.UserPrivilege.USER;
 import static userPackage.UserStatus.DISABLED;
 
-public class SingUpWindowController {
+public class SignUpWindowController {
 
     /**
      * these variables are the regular expressions that we will use to validate
@@ -80,7 +79,7 @@ public class SingUpWindowController {
     @FXML
     private TextField pass_text;
 
-    private static final Logger LOGGER = Logger.getLogger("model.controllers.SingUpWindowController");
+    private static final Logger LOGGER = Logger.getLogger("model.controllers.SignUpWindowController");
 
     /**
      * we create a stage with which we take from the parameter
@@ -98,6 +97,8 @@ public class SingUpWindowController {
      * @author iker
      */
     public void initStage(Parent root) {
+        LOGGER.info("starting initStage(Signup)");
+
         Scene scene = new Scene(root);
 
         //Associate scene to primaryStage(Window)
@@ -124,16 +125,18 @@ public class SingUpWindowController {
         stage.setOnCloseRequest(this::cerrarVentana);
         //Show window
         this.stage.show();
+        LOGGER.info("finished initStage(Signup)");
+
 
     }
 
     /**
      * this method validates that the data is correct and then sends a user to
      * register.if there is any failure it will show an alert with the failure
-     * information and if there is no failure it will take us to the signin 
+     * information and if there is no failure it will take us to the signin
      * window.
      *
-     * 
+     *
      * @param event
      * @author iker
      */
@@ -150,11 +153,9 @@ public class SingUpWindowController {
                 typeShow = true;
             }
 
-            
-             //Validate that the userName ,password ,fullName and eMail fields
-             //are filled in. If they are not informed, an error message is
-             //displayed.
-             
+            //Validate that the userName ,password ,fullName and eMail fields
+            //are filled in. If they are not informed, an error message is
+            //displayed.
             if (this.userNameTxTF.getText().trim().equalsIgnoreCase("")
                     || this.passwdTxPF.getText().trim().equalsIgnoreCase("")
                     || this.eMailTxTF.getText().trim().equalsIgnoreCase("")
@@ -229,8 +230,8 @@ public class SingUpWindowController {
                 //initialization the root (Parent) with the FXML Loader.load
                 Parent root = (Parent) loader.load();
                 //initialization the singInController
-                SingInWindowController mainStageController
-                        = ((SingInWindowController) loader.getController());
+                SignInWindowController mainStageController
+                        = ((SignInWindowController) loader.getController());
                 //set the Stage to the controll
                 mainStageController.setStage(primaryStage);
                 //Start the Stage
@@ -251,8 +252,8 @@ public class SingUpWindowController {
                     getClass().getResource("/model/views/dialog.css").toExternalForm());
 
             alert.showAndWait();
-            Logger.getLogger(SingUpWindowController.class.getName())
-                    .log(Level.SEVERE, null, ex);
+            Logger.getLogger(SignUpWindowController.class.getName())
+                    .log(Level.SEVERE, ex.getMessage(), ex);
             setEmptyAllField();
         }
 
@@ -274,14 +275,14 @@ public class SingUpWindowController {
             System.out.println(a);
             FXMLLoader loader = new FXMLLoader(a);
             Parent root = (Parent) loader.load();
-            SingInWindowController mainStageController
-                    = ((SingInWindowController) loader.getController());
+            SignInWindowController mainStageController
+                    = ((SignInWindowController) loader.getController());
             mainStageController.setStage(primaryStage);
             mainStageController.initStage(root);
             this.stage.close();
             //inicializar la scena
         } catch (IOException ex) {
-            Logger.getLogger(SingUpWindowController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SignUpWindowController.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
 
     }
@@ -298,8 +299,7 @@ public class SingUpWindowController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText("Quiere salir de la aplicacion?");
         alert.getDialogPane().getStylesheets().add(
-                    getClass().getResource("/model/views/dialog.css").toExternalForm());
-
+                getClass().getResource("/model/views/dialog.css").toExternalForm());
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
@@ -310,9 +310,9 @@ public class SingUpWindowController {
     }
 
     /**
-     * when typeShow is true this will be set
-     * Visible passwordField when typeShow is false the passwd will ve set
-     * visible
+     * when typeShow is true this will be set Visible passwordField when
+     * typeShow is false the passwd will ve set visible
+     *
      * @param event
      * @author Jp,iker
      * @return typeShow (boolean)
@@ -334,6 +334,7 @@ public class SingUpWindowController {
 
     /**
      * This method clear all the fields of the window
+     *
      * @author JP
      */
     public void setEmptyAllField() {
