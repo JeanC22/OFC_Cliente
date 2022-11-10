@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="OFC_SIGN_UP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="model.controllers.SignUpWindowController">
+<Pane fx:id="OFC_SIGN_UP" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="model.controllers.SignUpWindowController">
    <children>
       <AnchorPane disable="true" layoutX="242.0" layoutY="214.0" opacity="0.59" prefHeight="200.0" prefWidth="200.0" style="-fx-filter-blur: 10px;">
          <children>
@@ -29,10 +29,10 @@
       <PasswordField fx:id="passwdTxPF" layoutX="465.0" layoutY="206.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="160.0" promptText="min 6 max 12 characters" style="-fx-background-color: none; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px; -fx-text-fill: white;" />
       <TextField fx:id="fullNameTxTF" layoutX="192.0" layoutY="356.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="160.0" promptText="max 40 characters" style="-fx-background-color: none; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white; -fx-text-fill: #fff;" />
       <TextField fx:id="eMailTxTF" layoutX="464.0" layoutY="356.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="160.0" promptText="example@example.com" style="-fx-background-color: none; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white; -fx-text-fill: white;" />
-      <Label layoutX="194.0" layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="57.0" text="Username" textFill="WHITE" />
-      <Label layoutX="194.0" layoutY="319.0" prefHeight="17.0" prefWidth="53.0" text="Full name" textFill="WHITE" />
-      <Label layoutX="464.0" layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="54.0" text="Password" textFill="WHITE" />
-      <Label layoutX="466.0" layoutY="319.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="36.0" text="E-mail" textFill="WHITE" />
+      <Label layoutX="194.0" layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="70.0" text="Username" textFill="WHITE" />
+      <Label layoutX="194.0" layoutY="319.0" prefHeight="17.0" prefWidth="70.0" text="Full name" textFill="WHITE" />
+      <Label layoutX="464.0" layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="70.0" text="Password" textFill="WHITE" />
+      <Label layoutX="466.0" layoutY="319.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="70.0" text="E-mail" textFill="WHITE" />
       <Button fx:id="signUpBtn" defaultButton="true" layoutX="339.0" layoutY="460.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="49.0" prefWidth="122.0" style="-fx-background-color: #FFE98F; -fx-background-radius: 50em; -fx-font-size: 1.7em;" text="SIGN UP">
          <font>
             <Font size="16.0" />
