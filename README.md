@@ -9,11 +9,13 @@
 
 - [x] Java SE 8
 - [x] JavaFx 8
-- [x] Java EE 7
+- [x] <a href="https://github.com/RoronoaZoro3887/Reto1Library">libreriaOFC</a>
+
 
 ## Instalación
 
-<p>Este proyecto se tiene que empaquetar y necesita de una libreria</p>
+<p>Solo cuenta con el src y necesita un projecto</p>
+<p>necesita de una libreria</p>
 <a href="https://github.com/RoronoaZoro3887/Reto1Library" target="_blank"><img src="https://findicons.com/files/icons/1718/yatta_blues/48/gnome_mime_application_x_jar.png"><p>Click here</p></a>
 
 ## Despliegue
@@ -26,7 +28,7 @@ Iniciando el proyecto mediante la linea de comandos
 java -jar "nombre del .jar"
 
 ```
-O haciendo un dobleClick sobre el .jar
+O copilando el projecto y dirigiendose a la carpeta del projecto -> dist y ejecutando el .jar
 
 ## Autores
 <a href="https://github.com/Aritz24" target="_blank"><img src="https://avatars.githubusercontent.com/u/101640318?v=4"  width=55></a>
