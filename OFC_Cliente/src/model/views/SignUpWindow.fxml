@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="OFC_SIGN_UP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #000;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="model.controllers.SignUpWindowController">
+<Pane fx:id="OFC_SIGN_UP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="model.controllers.SignUpWindowController">
    <children>
       <AnchorPane disable="true" layoutX="242.0" layoutY="214.0" opacity="0.59" prefHeight="200.0" prefWidth="200.0" style="-fx-filter-blur: 10px;">
          <children>
@@ -79,7 +79,7 @@
           </Button>
       <Button fx:id="backBtn" cancelButton="true" layoutX="129.0" layoutY="65.0" mnemonicParsing="false" rotate="180.0" style="-fx-background-color: none; -fx-text-fill: #fff;">
           <graphic>
-              <ImageView>
+              <ImageView fitHeight="46.0" fitWidth="46.0">
                   <image>
                       <Image url="@../sources/arrowBackIcon.png" />
                   </image>
