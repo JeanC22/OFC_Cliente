@@ -49,6 +49,7 @@ public class SignUpWindowController {
      * these variables are the regular expressions that we will use to validate
      * the user data
      */
+    private static String regexUser = "^[a-zA-Z1-9]*$";
     private static String regex = "^[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+(\\s*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]*)*[a-zA-ZÀ-ÿ\\u00f1\\u00d1]+$";
     private static String regexEmail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
             + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -162,7 +163,6 @@ public class SignUpWindowController {
                     || this.passwdTxPF.getText().trim().equalsIgnoreCase("")
                     || this.eMailTxTF.getText().trim().equalsIgnoreCase("")
                     || this.fullNameTxTF.getText().trim().equalsIgnoreCase("")) {
-                userNameTxTF.setFocusTraversable(true);
                 throw new Exception("Uno de los campos no esta informado");
 
             }
@@ -171,9 +171,9 @@ public class SignUpWindowController {
               characters if it is longer than 15 characters or has special
               characters, an error is displayed.
              */
-            if (!this.userNameTxTF.getText().matches(regex)
+            if (!this.userNameTxTF.getText().matches(regexUser)
                     || this.userNameTxTF.getText().length() > 15) {
-                userNameTxTF.setFocusTraversable(true);
+                userNameTxTF.requestFocus();
                 throw new Exception("El campo UserName tiene caracteres "
                         + "especiales o te has pasado de el limite de "
                         + "caracteres permitidos(max 15)");
@@ -186,7 +186,7 @@ public class SignUpWindowController {
              */
             if (this.passwdTxPF.getText().length() < 6
                     || this.passwdTxPF.getText().length() > 12) {
-                passwdTxPF.setFocusTraversable(true);
+                passwdTxPF.requestFocus();
                 throw new Exception("El campo Password tiene que ser de minimo 6 "
                         + "caracteres y maximo de 12 caracteres");
 
@@ -198,7 +198,7 @@ public class SignUpWindowController {
              */
             if (!this.fullNameTxTF.getText().matches(regex)
                     || this.fullNameTxTF.getText().length() > 255) {
-                fullNameTxTF.setFocusTraversable(true);
+                fullNameTxTF.requestFocus();
                 throw new Exception("El campo Fullname tiene "
                         + "caracteres especiales o te has pasado de el limite de "
                         + "caracteres permitidos(max 40)");
@@ -211,7 +211,7 @@ public class SignUpWindowController {
              */
             if (!this.eMailTxTF.getText().matches(regexEmail) 
                     || this.eMailTxTF.getText().length() >= 255) {
-
+                eMailTxTF.requestFocus();
                 throw new Exception("El campo email notiene el formato adecuado"
                         + "(example@example.com) o cuenta con mas de 255 caracteres");
             }
@@ -256,7 +256,7 @@ public class SignUpWindowController {
 
             alert.showAndWait();
             Logger.getLogger(SignUpWindowController.class.getName())
-                    .log(Level.SEVERE, ex.getMessage(), ex);
+                    .log(Level.SEVERE, ex.getMessage());
 
         }
 
