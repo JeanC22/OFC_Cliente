@@ -130,7 +130,6 @@ public class SignUpWindowController {
         this.stage.show();
         LOGGER.info("finished initStage(Signup)");
 
-
     }
 
     /**
@@ -163,7 +162,7 @@ public class SignUpWindowController {
                     || this.passwdTxPF.getText().trim().equalsIgnoreCase("")
                     || this.eMailTxTF.getText().trim().equalsIgnoreCase("")
                     || this.fullNameTxTF.getText().trim().equalsIgnoreCase("")) {
-
+                userNameTxTF.setFocusTraversable(true);
                 throw new Exception("Uno de los campos no esta informado");
 
             }
@@ -174,7 +173,7 @@ public class SignUpWindowController {
              */
             if (!this.userNameTxTF.getText().matches(regex)
                     || this.userNameTxTF.getText().length() > 15) {
-
+                userNameTxTF.setFocusTraversable(true);
                 throw new Exception("El campo UserName tiene caracteres "
                         + "especiales o te has pasado de el limite de "
                         + "caracteres permitidos(max 15)");
@@ -187,7 +186,7 @@ public class SignUpWindowController {
              */
             if (this.passwdTxPF.getText().length() < 6
                     || this.passwdTxPF.getText().length() > 12) {
-
+                passwdTxPF.setFocusTraversable(true);
                 throw new Exception("El campo Password tiene que ser de minimo 6 "
                         + "caracteres y maximo de 12 caracteres");
 
@@ -198,8 +197,8 @@ public class SignUpWindowController {
               be displayed.
              */
             if (!this.fullNameTxTF.getText().matches(regex)
-                    || this.fullNameTxTF.getText().length() > 40) {
-
+                    || this.fullNameTxTF.getText().length() > 255) {
+                fullNameTxTF.setFocusTraversable(true);
                 throw new Exception("El campo Fullname tiene "
                         + "caracteres especiales o te has pasado de el limite de "
                         + "caracteres permitidos(max 40)");
@@ -210,10 +209,11 @@ public class SignUpWindowController {
               Email pattern, if it does not have the correct format an error
               message will be displayed.
              */
-            if (!this.eMailTxTF.getText().matches(regexEmail)) {
+            if (!this.eMailTxTF.getText().matches(regexEmail) 
+                    || this.eMailTxTF.getText().length() >= 255) {
 
                 throw new Exception("El campo email notiene el formato adecuado"
-                        + "(example@example.com)");
+                        + "(example@example.com) o cuenta con mas de 255 caracteres");
             }
             user.setUsername(this.userNameTxTF.getText());
             user.setPassword(this.passwdTxPF.getText());
@@ -257,7 +257,7 @@ public class SignUpWindowController {
             alert.showAndWait();
             Logger.getLogger(SignUpWindowController.class.getName())
                     .log(Level.SEVERE, ex.getMessage(), ex);
-            setEmptyAllField();
+
         }
 
     }
@@ -334,18 +334,4 @@ public class SignUpWindowController {
         pass_text.setVisible(false);
         return typeShow = true;
     }
-
-    /**
-     * This method clear all the fields of the window
-     *
-     * @author JP
-     */
-    public void setEmptyAllField() {
-        userNameTxTF.setText("");
-        passwdTxPF.setText("");
-        pass_text.setText("");
-        fullNameTxTF.setText("");
-        eMailTxTF.setText("");
-    }
-
 }

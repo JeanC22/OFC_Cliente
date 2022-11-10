@@ -169,16 +169,21 @@ public class SignInWindowController {
         try {
             //Validar que el campo userName (userNameTxTF) y el campo password (passwdTxTF) están informados:
             if (userNameTxTF.getText().isEmpty() || passwdTxPF.getText().isEmpty()) {
+                userNameTxTF.setFocusTraversable(true);
+
                 throw new Exception("Todos los campos no estan informados");
             }
             //Validar la longitud userName (userNameTxTF) máximo 15 caracteres:
 
             if (userNameTxTF.getText().length() > 15) {
+                userNameTxTF.setFocusTraversable(true);
+
                 throw new Exception("La longitud del "
                         + "campo user supera los 15 caracteres");
             }
             //Validar que el userName (userNameTxTF) no cuenta con caracteres especiales:
             if (!userNameTxTF.getText().matches(regex)) {
+                userNameTxTF.setFocusTraversable(true);
                 throw new Exception(
                         "El campo contiene"
                         + " caracteres especiales");
@@ -187,6 +192,7 @@ public class SignInWindowController {
             //Validar que la longitud del password(passwdTxTF) es máximo 12 caracteres
 
             if (passwdTxPF.getText().length() < 6 || passwdTxPF.getText().length() > 12) {
+                passwdTxPF.setFocusTraversable(true);
                 throw new Exception(
                         "El campo password es minimo "
                         + "de 6 caracteres o maximo de 12");
@@ -232,7 +238,6 @@ public class SignInWindowController {
                     getClass().getResource("/model/views/dialog.css").toExternalForm());
 
             alert.showAndWait();
-            setEmptyAllField();
             Logger.getLogger(SignInWindowController.class.getName())
                     .log(Level.SEVERE, ex.getMessage(), ex);
         }
@@ -261,17 +266,6 @@ public class SignInWindowController {
         } else {
             event.consume();
         }
-    }
-
-    /**
-     * this method will be clear all fields
-     */
-    public void setEmptyAllField() {
-        LOGGER.info("Method setEmptyAllField is starting");
-        userNameTxTF.setText("");
-        passwdTxPF.setText("");
-        LOGGER.info("Method setEmptyAllField is finished");
-
     }
 
 }
