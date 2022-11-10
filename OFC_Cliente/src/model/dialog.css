@@ -1,0 +1,20 @@
+.myDialog{
+    -fx-background-color: #FFE98F;
+
+}
+.myDialog > button {
+    -fx-background-color: rgb(21, 21, 21);
+    -fx-text-color:#FFE98F;
+    -fx-background-radius: 50em;
+}
+.myDialog > button ::hover {
+    -fx-background-color: #000;
+
+}
+.myDialog > button :active {
+    -fx-background-color: #000;
+    -fx-text-color:#FFE98F;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+
+}
