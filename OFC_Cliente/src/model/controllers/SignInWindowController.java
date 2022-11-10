@@ -36,7 +36,7 @@ import model.IntefaceFactory;
 import userPackage.User;
 
 /**
- * FXML Controller class
+ * This class will be controller all in the SignInWindow FXML Controller class
  *
  * @author Elias
  */
@@ -167,38 +167,36 @@ public class SignInWindowController {
         LOGGER.info("Method signIn is starting");
 
         try {
-            //Validar que el campo userName (userNameTxTF) y el campo password (passwdTxTF) están informados:
+            //Check if the field userName (userNameTxTF) and the field password (passwdTxTF) hasn't emptys
             if (userNameTxTF.getText().isEmpty() || passwdTxPF.getText().isEmpty()) {
                 userNameTxTF.requestFocus();
                 throw new Exception("Todos los campos no estan informados");
             }
-            //Validar la longitud userName (userNameTxTF) máximo 15 caracteres:
+            //Check if the size of field userName (userNameTxTF)has a  max 15 characters:
 
             if (userNameTxTF.getText().length() > 15) {
                 userNameTxTF.requestFocus();
                 throw new Exception("La longitud del "
                         + "campo user supera los 15 caracteres");
             }
-            //Validar que el userName (userNameTxTF) no cuenta con caracteres especiales:
+            //Check if the field userName (userNameTxTF) hasn't with special characters
             if (!userNameTxTF.getText().matches(regex)) {
                 userNameTxTF.requestFocus();
                 throw new Exception(
                         "El campo contiene"
                         + " caracteres especiales");
             }
-            //Validar que la longitud del password (passwdTxTF) es mínimo de 6 caracteres
-            //Validar que la longitud del password(passwdTxTF) es máximo 12 caracteres
-
+            //Check if the size of field password (passwdTxTF)has a  min 6 characters
+            //Check if the size of field password (passwdTxTF)has a  min 12 characters
             if (passwdTxPF.getText().length() < 6 || passwdTxPF.getText().length() > 12) {
                 passwdTxPF.requestFocus();
                 throw new Exception(
                         "El campo password es minimo "
                         + "de 6 caracteres o maximo de 12");
             }
-            //Si todos los campos han sido validados correctamente se 
-            //recogen los datos y se crea un objeto (Usuario), 
-            //se llamará al método singIn(Usuario) de la interfaceClient 
-            //enviando el objeto (Usuario) 
+            //if all fields are fine, will be get all the data and make the object (User)
+            //Will call the method singIn(user) from the mainInterface
+            //will be send the object(User) 
 
             IntefaceFactory facInterface = new IntefaceFactory();
             mainInterface interFace = (mainInterface) facInterface.getInterface();
@@ -217,12 +215,16 @@ public class SignInWindowController {
                 Parent root = (Parent) loader.load();
                 LogedWindowController logedStageController
                         = ((LogedWindowController) loader.getController());
-                //send te user
+                LOGGER.info("sending the User");
                 logedStageController.getUser(userLoged);
+                LOGGER.info("has send the User");
+
                 logedStageController.setStage(loginStage);
                 logedStageController.initStage(root);
                 //close the actually View
                 this.stage.close();
+                event.consume();
+
                 LOGGER.info("Method signIn is finished");
 
             } catch (ServerConnectionException | LoginUsernameException

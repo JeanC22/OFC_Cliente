@@ -25,6 +25,8 @@ import javafx.stage.WindowEvent;
 import userPackage.User;
 
 /**
+ * This class will be controller all in the SignUpWindow
+ *
  * FXML Controller class
  *
  * @author Jp
@@ -66,8 +68,13 @@ public class LogedWindowController {
         //init the scene with the root you got from singInController
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("OFC SIGN IN");
+        //Title from the window OFC LOGED
+        stage.setTitle("OFC LOGED");
         //get the user from the singInController and init on the local User
+        //Disabling the profileLabel
+        profileLabel.setDisable(true);
+        //Disabling the profileImage
+        profileImage.setDisable(true);
 
         stage.setOnCloseRequest(this::cerrarVentana);
         logoutImage.setOnMouseClicked(this::logout);
@@ -81,6 +88,7 @@ public class LogedWindowController {
      * this Method will be close LogedWindow and start the SingInWindow
      *
      * @author Jp
+     * @param event
      */
     @FXML
     public void logout(MouseEvent event) {
@@ -104,6 +112,8 @@ public class LogedWindowController {
             mainStageController.initStage(root);
             //close the actually View
             this.stage.close();
+            event.consume();
+
             LOGGER.info("finished logout");
 
         } catch (IOException ex) {
@@ -136,13 +146,22 @@ public class LogedWindowController {
         }
     }
 
-    public User getUser(User userLogin) {
+    /**
+     * This Method get the userLogin from the SignInWindow
+     *
+     * @param userLogin
+     */
+    public void getUser(User userLogin) {
         this.user = userLogin;
-        return user;
     }
 
+    /**
+     * This Method make the welcomeMessage
+     *
+     * @param name
+     */
     public void setWelcomeMessage(String name) {
-        welcomeString.setText(" Welcome    " + name);
+        welcomeString.setText("Welcome "+ name);
     }
 
 }

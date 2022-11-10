@@ -6,7 +6,7 @@ package model;
 
 
 /**
- * This is the class IntefaceFactory
+ * This is the class IntefaceFactory and make a socket
  * @author jp22
  */
 public class IntefaceFactory {
