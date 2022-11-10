@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="OFC_SIGN_UP" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="model.controllers.SignUpWindowController">
+<Pane fx:id="OFC_SIGN_UP" maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #000;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="model.controllers.SignUpWindowController">
    <children>
       <AnchorPane disable="true" layoutX="242.0" layoutY="214.0" opacity="0.59" prefHeight="200.0" prefWidth="200.0" style="-fx-filter-blur: 10px;">
          <children>
@@ -33,9 +33,9 @@
       <Label layoutX="194.0" layoutY="319.0" prefHeight="17.0" prefWidth="70.0" text="Full name" textFill="WHITE" />
       <Label layoutX="464.0" layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="70.0" text="Password" textFill="WHITE" />
       <Label layoutX="466.0" layoutY="319.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="70.0" text="E-mail" textFill="WHITE" />
-      <Button fx:id="signUpBtn" defaultButton="true" layoutX="339.0" layoutY="460.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="49.0" prefWidth="122.0" style="-fx-background-color: #FFE98F; -fx-background-radius: 50em; -fx-font-size: 1.7em;" text="SIGN UP">
+      <Button fx:id="signUpBtn" defaultButton="true" layoutX="339.0" layoutY="450.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="54.0" prefWidth="123.0" style="-fx-background-color: #FFE98F; -fx-background-radius: 50em;" text="SIGN UP">
          <font>
-            <Font size="16.0" />
+            <Font name="Arial" size="16.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -68,7 +68,14 @@
             <Image url="@../sources/questionIconYellow.png" />
          </image>
           </ImageView>
-      <Button fx:id="spBtn" layoutX="645.0" layoutY="207.0" mnemonicParsing="false" style="-fx-background-color: none; -fx-text-fill: #fff;" />
+      <Button fx:id="spBtn" layoutX="645.0" layoutY="207.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="16.0" style="-fx-background-color: none; -fx-text-fill: #fff;">
+         <graphic>
+              <ImageView fitHeight="22.0" fitWidth="22.0">
+                  <image>
+                      <Image url="@../sources/eyeShowPasswdIcon.png" />
+                  </image>
+              </ImageView>
+         </graphic></Button>
       <Button fx:id="backBtn" cancelButton="true" layoutX="129.0" layoutY="65.0" mnemonicParsing="false" rotate="180.0" style="-fx-background-color: none; -fx-text-fill: #fff;">
           <graphic>
               <ImageView fitHeight="46.0" fitWidth="46.0">
@@ -78,11 +85,6 @@
               </ImageView>
           </graphic>
       </Button>
-      <TextField fx:id="pass_text" layoutX="465.0" layoutY="206.0" promptText="min 6 max 12 characters" scaleZ="0.0" style="-fx-background-color: none; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white; -fx-text-fill: white;" visible="false" />
-        <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="644.0" layoutY="217.0">
-            <image>
-                <Image url="@../sources/eyeShowPasswdIcon.png" />
-            </image>
-        </ImageView>
+      <TextField fx:id="pass_text" layoutX="465.0" layoutY="206.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="160.0" promptText="min 6 max 12 characters" scaleZ="0.0" style="-fx-background-color: none; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white; -fx-text-fill: white;" visible="false" />
    </children>
 </Pane>
