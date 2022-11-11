@@ -33,16 +33,20 @@ import userPackage.User;
 import interfacePackage.mainInterface;
 import javafx.scene.layout.Pane;
 
-/**
- * FXML Controller class
- *
- * @author iker
- * @colaborator Jp, Elias
- */
+
 import model.IntefaceFactory;
 import static userPackage.UserPrivilege.USER;
 import static userPackage.UserStatus.DISABLED;
 
+/**
+ * 
+ * This class will be controller all in the SignInWindow FXML Controller class
+ * 
+ * FXML Controller class
+ *
+ * @author iker
+ *
+ */
 public class SignUpWindowController {
 
     /**
@@ -192,7 +196,7 @@ public class SignUpWindowController {
             }
 
             //Validate that the length of the fullname is more than 1 character
-            }
+            
             if (this.fullNameTxTF.getText().length() <= 1) {
                 fullNameTxTF.requestFocus();
                 throw new Exception("El campo no puede tener solo un diigto");
@@ -210,7 +214,7 @@ public class SignUpWindowController {
                 throw new Exception("El campo Fullname tiene "
                         + "caracteres especiales o te has pasado de el limite de "
                         + "caracteres permitidos(max 255)");
-                       
+            }      
             /*
               Validate that the format of the eMail(eMailTxTF) by means of an
               Email pattern, if it does not have the correct format an error
@@ -268,8 +272,8 @@ public class SignUpWindowController {
                     .log(Level.SEVERE, ex.getMessage());
 
         }
-
     }
+    
 
     /**
      * This method is to send us to the previous window when we click on the
