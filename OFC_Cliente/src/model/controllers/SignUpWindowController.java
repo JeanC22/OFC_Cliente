@@ -192,25 +192,25 @@ public class SignUpWindowController {
             }
 
             //Validate that the length of the fullname is more than 1 character
-            }
             if (this.fullNameTxTF.getText().length() <= 1) {
                 fullNameTxTF.requestFocus();
                 throw new Exception("El campo no puede tener solo un diigto");
             }
-            
+
             /*
               Validate that the length of the fullname is 255 characters
               maximum,If it is longer than 255 characters an error message will
               be displayed.
              */
-             
             if (!this.fullNameTxTF.getText().matches(regex)
                     || this.fullNameTxTF.getText().length() > 255) {
                 fullNameTxTF.requestFocus();
                 throw new Exception("El campo Fullname tiene "
                         + "caracteres especiales o te has pasado de el limite de "
                         + "caracteres permitidos(max 255)");
-                       
+
+            }
+
             /*
               Validate that the format of the eMail(eMailTxTF) by means of an
               Email pattern, if it does not have the correct format an error
