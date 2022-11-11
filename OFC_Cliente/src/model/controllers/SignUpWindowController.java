@@ -38,7 +38,7 @@ import static userPackage.UserStatus.DISABLED;
 
 /**
  * FXML Controller class
- *
+ * This class will be controller all in the SignUpWindow FXML Controller class
  * @author iker
  * @colaborator Jp, Elias
  */
@@ -79,7 +79,6 @@ public class SignUpWindowController {
     private Boolean typeShow = true;
     @FXML
     private TextField pass_text;
-
     private static final Logger LOGGER = Logger.getLogger("model.controllers.SignUpWindowController");
     @FXML
     private Pane OFC_SIGN_UP;
@@ -193,7 +192,7 @@ public class SignUpWindowController {
             //Validate that the length of the fullname is more than 1 character
             if (this.fullNameTxTF.getText().length() <= 1) {
                 fullNameTxTF.requestFocus();
-                throw new Exception("El campo no puede tener solo un diigto");
+                throw new Exception("El campo no puede tener solo un Caracter");
             }
 
             /*
