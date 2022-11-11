@@ -201,9 +201,8 @@ public class SignUpWindowController {
                 throw new Exception("El campo Fullname tiene "
                         + "caracteres especiales o te has pasado de el limite de "
                         + "caracteres permitidos(max 255)");
-                /*
-              Validate that the length of the fullname is more than 1 character
-                 */
+
+                //Validate that the length of the fullname is more than 1 character
             }
             if (this.fullNameTxTF.getText().length() <= 1) {
                 fullNameTxTF.requestFocus();
