@@ -33,18 +33,16 @@ import userPackage.User;
 import interfacePackage.mainInterface;
 import javafx.scene.layout.Pane;
 
-
+/**
+ * FXML Controller class
+ *
+ * @author iker
+ * @colaborator Jp, Elias
+ */
 import model.IntefaceFactory;
 import static userPackage.UserPrivilege.USER;
 import static userPackage.UserStatus.DISABLED;
 
-/**
- *This class will be controller all in the SignUpWindow
- *
- * FXML Controller class
- *
- * @author Iker
- */
 public class SignUpWindowController {
 
     /**
@@ -115,12 +113,12 @@ public class SignUpWindowController {
         userNameTxTF.setTooltip(new Tooltip("Max characters 15"));
         passwdTxPF.setTooltip(new Tooltip("min 6 and max 12 characters"));
         pass_text.setTooltip(new Tooltip("min 6 and max 12 characters"));
-        fullNameTxTF.setTooltip(new Tooltip("Max 40 characters"));
+        fullNameTxTF.setTooltip(new Tooltip("Max 255 characters"));
         eMailTxTF.setTooltip(new Tooltip("example@example.com"));
 
         Tooltip.install(userNameTT, new Tooltip("Max characters 15"));
         Tooltip.install(passwdTT, new Tooltip("min 6 and max 12 characters"));
-        Tooltip.install(fullNameTT, new Tooltip("Max 40 characters"));
+        Tooltip.install(fullNameTT, new Tooltip("Max 255 characters"));
         Tooltip.install(eMailTT, new Tooltip("example@example.com"));
 
         //these are the actions of the window with the method references
@@ -192,19 +190,27 @@ public class SignUpWindowController {
                         + "caracteres y maximo de 12 caracteres");
 
             }
+
+            //Validate that the length of the fullname is more than 1 character
+            }
+            if (this.fullNameTxTF.getText().length() <= 1) {
+                fullNameTxTF.requestFocus();
+                throw new Exception("El campo no puede tener solo un diigto");
+            }
+            
             /*
-              Validate that the length of the fullname is 40 characters
-              maximum,If it is longer than 40 characters an error message will
+              Validate that the length of the fullname is 255 characters
+              maximum,If it is longer than 255 characters an error message will
               be displayed.
              */
+             
             if (!this.fullNameTxTF.getText().matches(regex)
                     || this.fullNameTxTF.getText().length() > 255) {
                 fullNameTxTF.requestFocus();
                 throw new Exception("El campo Fullname tiene "
                         + "caracteres especiales o te has pasado de el limite de "
                         + "caracteres permitidos(max 255)");
-
-            }
+                       
             /*
               Validate that the format of the eMail(eMailTxTF) by means of an
               Email pattern, if it does not have the correct format an error
