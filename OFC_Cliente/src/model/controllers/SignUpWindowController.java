@@ -38,9 +38,9 @@ import static userPackage.UserStatus.DISABLED;
 
 /**
  * FXML Controller class
- * This class will be controller all in the SignUpWindow FXML Controller class
+ * This class will be controller all in the SignUpWindow 
  * @author iker
- * @colaborator Jp, Elias
+ * 
  */
 public class SignUpWindowController {
 
