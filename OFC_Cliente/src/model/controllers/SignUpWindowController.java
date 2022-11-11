@@ -33,16 +33,18 @@ import userPackage.User;
 import interfacePackage.mainInterface;
 import javafx.scene.layout.Pane;
 
-/**
- * FXML Controller class
- *
- * @author iker
- * @colaborator Jp, Elias
- */
+
 import model.IntefaceFactory;
 import static userPackage.UserPrivilege.USER;
 import static userPackage.UserStatus.DISABLED;
 
+/**
+ *This class will be controller all in the SignUpWindow
+ *
+ * FXML Controller class
+ *
+ * @author Iker
+ */
 public class SignUpWindowController {
 
     /**
