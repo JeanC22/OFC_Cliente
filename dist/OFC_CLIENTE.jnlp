@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="OFC_CLIENTE.jnlp">
+  <information>
+    <title>OFC_CLIENTE</title>
+    <vendor>2dam</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="OFC_CLIENTE.jar" size="68021" download="eager" />
+    <jar href="lib\LibraryReto1.jar" size="14049" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="OFC_CLIENTE" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="model.App"  name="OFC_CLIENTE" />
+  <update check="always"/>
+</jnlp>
